@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Booking Confirmed{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card text-center">
+                <div class="card-header bg-success text-white">
+                    <h3>Booking Confirmed!</h3>
+                </div>
+                <div class="card-body py-5">
+                    <div class="mb-4">
+                        <i class="fa fa-check-circle text-success" style="font-size: 4rem;"></i>
+                    </div>
+                    
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                        {% endfor %}
+                    {% else %}
+                        <h5 class="card-title">Thank you for your booking!</h5>
+                        <p class="card-text">Your event booking has been successfully confirmed.</p>
+                    {% endif %}
+                    
+                    <p class="mt-4">We look forward to seeing you at the event!</p>
+                    
+                    <div class="mt-4">
+                        <a href="{% url 'event_list' %}" class="btn btn-primary me-2">Browse More Events</a>
+                        <a href="{% url 'booking_list' %}" class="btn btn-outline-secondary">View All Bookings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

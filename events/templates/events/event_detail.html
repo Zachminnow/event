@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}{{ event.title }}{% endblock title %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12 mb-4">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'event_list' %}">Events</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ event.title }}</li>
+                    </ol>
+                </nav>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tag }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h2>{{ event.title }}</h2>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">About this event</h5>
+                        <p class="card-text">{{ event.description|linebreaks }}</p>
+                        <p><strong>Venue:</strong> {{ event.venue }}</p>
+                        <p><strong>Host: </strong>{{event.host}}</p>
+                        <p><strong>Guest: </strong>{{ event.guest}}</p>
+                        <p><strong>Date: </strong>{{ event.date}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Book Event</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>Ready to join this event? Secure your ticket now!</p>
+                        <p>Available ticket categories:
+                            <ul>
+                                <li><strong>VVIP</strong> - premium experience</li>
+                                <li><strong>VIP</strong> -  enhanced experience</li>
+                                <li><strong>REGUlAR</strong> - standard experience</li>
+                            </ul>
+                        </p>
+                        <div class="d-grid">
+                            <a href="{% url 'book_event' event.id %}" class="btn btn-success btn-lg">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h5>Event Statistics</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Total Bookings:</strong> {{ bookings.count }}</p>
+                        <p><strong>VVIP: {{ ticket_counts.VVIP }}</strong></p>
+                        <p><strong>VIP: {{ ticket_counts.VIP }}</strong></p>
+                        <p><strong>REGULAR: {{ ticket_counts.REGULAR }}</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock content %}
