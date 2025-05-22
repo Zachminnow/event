@@ -1,0 +1,20 @@
+<!-- templates/shop/product_detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h2>{{ product.product }}</h2>
+        </div>
+        <div class="card-body">
+            <p><strong>Vendor:</strong> {{ product.vendor.name }}</p>
+            <p><strong>Units:</strong> {{ product.unit }}</p>
+            <p><strong>Description:</strong> {{ product.description }}</p>
+            <a href="{% url 'dashboard' %}" class="btn btn-primary">
+                Back to Dashboard
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

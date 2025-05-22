@@ -1,11 +1,15 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
 <div class="container mt-4">
     <div class="row">
         <div class="col-12">
-            <h2>Available Events</h2>
+            <h2>Upcoming Events</h2>
+            <p>We can't wait to see you at an upcoming event! On this page, you can advance search by 
+                location, select event types (how you want to join the event), and/or pick out topics of your interest!
+            </p>
             <hr/>
+
 
             {% if messages %}
                 {% for message in messages %}
@@ -15,6 +19,7 @@
                     </div>
                 {% endfor %}
             {% endif %}
+
         </div>
     </div>
 
@@ -23,7 +28,15 @@
             {% for event in events %}
                 <div class="col">
                     <div class="card h-100">
+                        
+                            {% if event.image %}
+                                <img src="{{ event.image.url }}" alt="event image" width="300">
+                            {% else %}
+                                <img src="{% static '/images/default.jpg' %}" alt="Default Image" width="300">
+                            {% endif %}
+                        
                     <div class="card-body">
+                    
                         <h5 class="card-title">{{ event.title }}</h5>
                         <p class="card-text">{{ event.description }}</p>
                         <p class="card-text"><small class="text-muted">Venue: {{ event.venue }}</small></p>

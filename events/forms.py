@@ -8,7 +8,7 @@ class EventForm(forms.ModelForm):
         fields = ['title', 'host', 'guest', 'description', 'venue', 'date', 'image']
         widgets = {
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
-            'title': forms.TextInput(attrs={'class': 'form'}),
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
             'venue': forms.TextInput(attrs={'class': 'form-control'}),
             'host': forms.TextInput(attrs={'class': 'form-control'}),
             'guest': forms.TextInput(attrs={'class': 'form-control'}),
